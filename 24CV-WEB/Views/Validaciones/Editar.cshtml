@@ -1,0 +1,72 @@
+﻿@model _24CV_WEB.Models.Curriculum 
+
+@{
+    ViewData["Title"] = "Editar Curriculum";
+}
+
+<h2>Editar Curriculum</h2>
+
+@using (Html.BeginForm("Editar", "Validaciones", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nombre)
+        @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Nombre)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Apellidos)
+        @Html.TextBoxFor(model => model.Apellidos, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Apellidos)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CURP)
+        @Html.TextBoxFor(model => model.CURP, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.CURP)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FechaNacimiento)
+        @Html.EditorFor(model => model.FechaNacimiento, new { @class = "form-control", type = "date" })
+        @Html.ValidationMessageFor(model => model.FechaNacimiento)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Dirección)
+        @Html.EditorFor(model => model.Dirección, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Dirección)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email)
+        @Html.EditorFor(model => model.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PorcentajeIngles)
+        @Html.EditorFor(model => model.PorcentajeIngles, new { @class = "form-control", type = "number", min = 0, max = 100 })
+        @Html.ValidationMessageFor(model => model.PorcentajeIngles)
+    </div>
+
+
+    <!-- Agrega los demás campos aquí, como Dirección, Email, PorcentajeIngles, etc. -->
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Foto)
+        <input type="file" name="Foto" accept="image/*" />
+        @Html.ValidationMessageFor(model => model.Foto)
+    </div>
+
+    <div class="form-group">
+        @Html.HiddenFor(model => model.Id) <!-- Campo oculto para el ID del currículum -->
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Guardar" class="btn btn-primary" />
+        <a asp-action="Lista" class="btn btn-secondary">Cancelar</a>
+    </div>
+}
